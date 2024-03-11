@@ -39,12 +39,13 @@ public class DrathingService {
 	};
 	
 	//keyword
-	public KeywordDTO selectKeywordDTO (String seq) {
-		return mapper.selectKeywordDTO(seq);
+	public KeywordDTO selectKeywordDTO () {
+		return mapper.selectKeywordDTO();
 	};
 	public void insertKeywordDTO(KeywordDTO keywordDTO) {
 		mapper.insertKeywordDTO(keywordDTO);
 	};
+
 	
 	//print
 	public PrintDTO selectPrintDTO (String number) {
@@ -62,6 +63,10 @@ public class DrathingService {
 	public void deletePrintDTO(String number) {
 		mapper.deletePrintDTO(number);
 	};
+
+	public  void updatePrintDTO(PrintDTO printDTO){
+		mapper.updatePrintDTO(printDTO);
+	}
 	
 	
 	//user

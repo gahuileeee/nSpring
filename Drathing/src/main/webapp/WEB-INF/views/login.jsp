@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,55 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href='/css/login01.css'>
     <title>DraThing</title>
-	 <script>
-    
-    // 폼 제출 시 실행되는 함수
-    function onSubmitForm() {
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
-        var data = {
-                email: email,
-                password: password,
-            };
-            // 서버로 데이터 전송
-            sendFormData(data);
-            console.log("아?");
-            return false;
-    }
-    
- // 서버로 JSON 데이터 전송
-    function sendFormData(data) {
-        fetch('${pageContext.request.contextPath}/signin01', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        .then(response => response.json())
-        .then(errorMessages => {
-        // 서버로부터의 응답 처리
-        console.log('Error Messages:', errorMessages);
 
-        if (errorMessages.length > 0) {
-            errorMessages.forEach(errorMessage => {
-            	alert(errorMessage);
-                console.error(errorMessage);
-            });
-        } else {
-            // 에러가 없는 경우
-        	 document.getElementById("form").submit();
-        }
-    })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    }
-</script>
 </head>
 
 <body>
 
+<c:if test="${msg != null}">
+    <script>
+        alert("${msg}");
+    </script>
+</c:if>
     <!-- 로고 이미지 -->
     <div id="img">
         <h1><span class="pink-text">Dra</span><span class="green-text">Thing</span></h1>
@@ -64,14 +25,14 @@
 
     <!-- 로그인 폼 -->
     <div class="login-container">
-        <form class="login-form" id ="form" action="<c:url value="/key/key01"/>"  onsubmit="return onSubmitForm()"  method="post">
+        <form class="login-form" id ="form" action="/login"   method="post">
             <div class="form-group">
-                <label for="username">ID(email):</label>
-                <input type="text" id="email" name="user">
+                <label for='uid'>ID(email):</label>
+                <input type="text" id="uid" name="uid">
             </div>
             <div class="form-group">
-                <label for="password">password:</label>
-                <input type="password" id="password" name="password">
+                <label for="upassword">password:</label>
+                <input type="password" id="upassword" name="upassword">
             </div>
             <div class="button-container">
                 <button type="submit" class="button">Login</button>
@@ -80,7 +41,7 @@
     </div>
     
 	<div>
-	<form action="<c:url value="/register/res01"/>" method="post">
+	<form action="/register" method="post">
 	<button type="submit" class="guest-button" id='button2'>Do not have an account?</button>
 	</form>
 	</div>

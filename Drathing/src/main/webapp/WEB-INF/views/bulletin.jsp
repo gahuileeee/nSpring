@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.List" %>
-<c:set var="loginOutLink" value="${sessionScope.user==null ? '/bulletin/login01' : '/bulletin/logout01'}"/>
+<c:set var="loginOutLink" value="${sessionScope.user==null ? '/login?pg=1' : '/logout'}"/>
 <c:set var="loginOut" value="${sessionScope.user==null ? 'Login' : 'Logout'}"/>
 <!DOCTYPE html>
 <html>
@@ -14,32 +14,6 @@
 
 <script>
 
-function likePost() {
-	var numbervalue = ${number};
-	var likevalue = ${like};
-	console.log(numbervalue);
-	console.log(likevalue);
-    	var data = {
-    	        number : ${number},
-    	        like : ${like}
-    	    };
-    	
-    	console.log("data : " + JSON.stringify(data));
-    	
-    	fetch('./bulletin02', {
-    	    method: 'POST',
-    	    headers: {
-                'Content-Type': 'application/json', 
-            },
-            body: JSON.stringify(data)
-    	})
-    	.catch(error => {
-    	    console.error('There was a problem with the fetch operation:', error);
-    	});
-    	var waitTime = 3000;
-    	 window.location.reload();
-    }
-    
 
 </script>
 
@@ -49,12 +23,12 @@ function likePost() {
     </div>
 
     <div id="nav">
-        <form action="<c:url value="/home01"/>" method= "post" >
+        <form action="/index"  >
             <button type="submit" class="button" id='button2'>
                 <h3>home</h3>
             </button>
         </form>
-        <form action="<c:url value="${loginOutLink}"/>" method="post" onsubmit="addCurrentPageToSession()">
+        <form action="${loginOutLink}" >
             <button type="submit" class="button" id='button2'>
                 <h3>${loginOut}</h3>
             </button>
@@ -63,18 +37,22 @@ function likePost() {
 
     <div id="context">
     <br>
-        <h3 class="subject">Subject: <u>${name}</u></h3> 
-            <h4 class="person">User Name: <u>${user}</u></h4>
+        <h3 class="subject">Subject: <u>${print.name}</u></h3>
+            <h4 class="person">User Name: <u>${print.user}</u></h4>
     <br>
         <div class="image-container">
-            <img src="data:image/png;base64,${print}" alt="Print Image"/>
+            <img src="data:image/png;base64,${print.printing}" alt="Print Image"/>
         </div>
-        <Br>
+
           <div class="like-button">
-            <button type="button" onclick="likePost()">
-                <span class="heart-icon">&#x2665;</span>
-                <span class="like-text" style=" font-size: 16px;">Like ${like}</span>
-            </button>
+            <form action="/like" method="post">
+                <input type="hidden" value="${print.number}" name="number">
+                <input type="hidden" value="${print.like}" name="like">
+                <button type="submit">
+                    <span class="heart-icon">&#x2665;</span>
+                    <span class="like-text" style=" font-size: 16px;">Like ${print.like}</span>
+                </button>
+            </form>
         </div>
           <div id="comment-section">
     <div id="comments-container">
@@ -84,25 +62,21 @@ function likePost() {
     </div>
     
     <!-- 댓글 입력 폼 -->
-    <form id="comment-form" action ="<c:url value="/bulletin03"/>" method="post">
+    <form id="comment-form" action ="/like" method="post">
         <textarea id="comment-input" name="comment" rows="4" cols="50"></textarea>
-       <input type="hidden" name="number" value="${number}">
+       <input type="hidden" name="number" value="${print.number}">
+       <input type="hidden" name="number" value="${print.like}">
         <button type="submit" >Submit Comment</button>
     </form>
-    <Br>
+    <br>
        <div id="comments">
-       <% List<String> dataList = (List<String>) request.getAttribute("lists");
-        int size = dataList.size();
-        	for(int i=0; i<size ; i+=2){
-        %> 
+          <c:forEach var="comment" items="${lists}">
         <div>
-        <p><%= dataList.get(i)%></p>
-        <p><%= dataList.get(i+1)%></p>
+        <p>${comment.comment_id}</p>
+        <p>${comment.content}</p>
         </div>
-         <%
-        }
-        %>
         <br>
+          </c:forEach>
     </div>
 </div>
     </div>

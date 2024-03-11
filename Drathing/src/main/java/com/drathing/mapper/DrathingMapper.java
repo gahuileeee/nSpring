@@ -18,7 +18,7 @@ public interface DrathingMapper {
 	public void updateCommentDTO(CommentDTO commentDTO);
 	public void deleteCommentDTO(String pk);
 	
-	public KeywordDTO selectKeywordDTO (String seq);
+	public KeywordDTO selectKeywordDTO ();
 	//public List<CommentDTO> selectKeywordDTOs ();
 	public void insertKeywordDTO(KeywordDTO keywordDTO);
 	//public void updateKeywordDTO(KeywordDTO keywordDTO);
@@ -30,7 +30,7 @@ public interface DrathingMapper {
 	public void insertPrintDTO(PrintDTO printDTO);
 	//public void updatePrintDTO(PrintDTO printDTO);
 	public void deletePrintDTO(String number);
-	
+	public void updatePrintDTO(PrintDTO printDTO);
 	
 	public UserDTO selectUserDTO (String uid);
 	//public List<UserDTO> selectUserDTOs ();

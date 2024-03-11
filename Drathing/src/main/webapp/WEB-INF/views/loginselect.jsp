@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var="loginOutLink" value="${sessionScope.user==null ? '/login/login01' : '/login/logout01'}"/>
+<c:set var="loginOutLink" value="${sessionScope.user==null ? '/login' : '/logout'}"/>
 <c:set var="loginOut" value="${sessionScope.user==null ? 'Login' : 'Logout'}"/>
 <c:set var="Guest" value="${sessionScope.user==null ? 'Guest' : 'Start'}"/>
 <!DOCTYPE html>
@@ -66,12 +66,12 @@
     </div>
  <div class="button-container">
     <!-- 버튼 1 -->
-    <form action="<c:url value="${loginOutLink}"/>" method="post">
+    <form action="${loginOutLink}?k=1">
         <button type="submit" class="button">${loginOut}</button>
     </form>
 
     <!-- 버튼 2 -->
-    <form action="<c:url value="/key/key01"/>" name="user" method="post">
+    <form action="/keyword" name="user" >
         <button type="submit" class="button"  id="guestButton">${Guest}</button>
     </form>
  

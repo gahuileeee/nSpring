@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.List" %>
 
@@ -124,17 +124,17 @@
 
     <div id="button-container">
         <!-- 버튼 1 -->
-        <form action="<c:url value="/bulletin/main01"/>" method="post" onsubmit="return submitDrawing()">
+        <form action="/board" method="post" onsubmit="return submitDrawing()">
             <input type="hidden" name="drawingData" id="drawingDataInput">
             <input type="hidden" name="key" value="${key}">
             <button type="submit" class="button" name="print">submit</button>
         </form>
 
         <!-- 버튼 2 -->
-        <form action="<c:url value="/key/key01"/>" method="post">
-            <button type="submit" class="button">return to keyward</button>
+        <form action="/keyword" >
+            <button type="submit" class="button">return to keyword</button>
         </form>
     </div>
-    <script type="text/javascript" src="<c:url value="/resources/js/drawing2.js" />"></script>
+    <script type="text/javascript" src="/js/drawing2.js"></script>
 </body>
 </html>

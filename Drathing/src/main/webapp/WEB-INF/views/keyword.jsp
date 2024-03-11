@@ -57,15 +57,15 @@
     </div>
  <div class="button-container">
     <!-- 버튼 1 -->
-    <form action="<c:url value="/draw/draw01"/>" method="post">
+    <form action="/drawing">
         <button type="submit" class="button">RAMDOM</button>
     </form>
 
     <!-- 버튼 2 -->
-    <form action="<c:url value="/key/create01"/>" method="post">
+    <form action="/create" >
         <button type="submit" class="button">CREATE</button>
     </form>
-     <form action="<c:url value="/home01"/>" method="post">
+     <form action="/index">
         <button type="submit" class="button">HOME</button>
     </form>
 </div>

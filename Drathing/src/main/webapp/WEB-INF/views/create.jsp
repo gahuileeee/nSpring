@@ -59,7 +59,7 @@
     </div>
  <div class="button-container">
     <!-- 버튼 1 -->
-    <form action="<c:url value="/draw/draw01"/>" method="post">
+    <form action="/drawing" method="post">
     <label for="키워드"  >  </label>
   <input type ="text" id="키워드" name="key" required autofocus
    style="font-family: 'Finger Paint', 맑음고딕; font-size : 30px; text-align: center;">

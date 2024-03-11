@@ -51,8 +51,14 @@
     </select>
 
     <insert id="insertPrintDTO" >
-        INSERT INTO `print` VALUES (null, #{name}, #{print}, #{user}, null);
+        INSERT INTO `print` VALUES (null, #{name}, #{printing}, #{user}, 0);
     </insert>
+
+    <update id="updatePrintDTO" >
+        UPDATE `print` SET
+        `like`=#{like}
+         WHERE `number`= #{number};
+    </update>
 
 
     <!-- User -->
