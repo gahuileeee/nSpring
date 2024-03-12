@@ -66,7 +66,8 @@
     </div>
  <div class="button-container">
     <!-- 버튼 1 -->
-    <form action="${loginOutLink}?k=1">
+    <form action="${loginOutLink}">
+        <input type="hidden" name="k" value="1">
         <button type="submit" class="button">${loginOut}</button>
     </form>
 

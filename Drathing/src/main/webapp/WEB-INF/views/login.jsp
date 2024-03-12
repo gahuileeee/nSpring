@@ -26,6 +26,7 @@
     <!-- 로그인 폼 -->
     <div class="login-container">
         <form class="login-form" id ="form" action="/login"   method="post">
+            <input type="hidden" name="pg" value="${pg}">
             <div class="form-group">
                 <label for='uid'>ID(email):</label>
                 <input type="text" id="uid" name="uid">

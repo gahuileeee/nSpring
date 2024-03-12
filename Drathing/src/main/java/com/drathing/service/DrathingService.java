@@ -46,6 +46,10 @@ public class DrathingService {
 		mapper.insertKeywordDTO(keywordDTO);
 	};
 
+	public  KeywordDTO selectKeywordDTOByName(String name){
+		return mapper.selectKeywordDTOByName(name);
+	};
+
 	
 	//print
 	public PrintDTO selectPrintDTO (String number) {

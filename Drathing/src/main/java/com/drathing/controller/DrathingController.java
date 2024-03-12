@@ -47,7 +47,8 @@ public class DrathingController {
 
 	//로그인창
 	@GetMapping("/login")
-	public String login(){
+	public String login(@RequestParam(value = "pg", required = false) String pg, Model model){
+		model.addAttribute("pg",pg);
 		return "/login";
 	}
 
@@ -90,8 +91,8 @@ public class DrathingController {
 			msg = "유효하지 않은 이메일 형식입니다";
 		}
 		model.addAttribute("msg",msg);
-
-		return  "/login?pg="+pg;
+		model.addAttribute("pg",pg);
+		return  "/login";
 	}
 
 	public static boolean isValidEmail(String email) {
@@ -136,9 +137,10 @@ public class DrathingController {
 
 	@PostMapping("/drawing")
 	public String drawing(@RequestParam("key") String name, Model model){
-		KeywordDTO keywordDTO = new KeywordDTO();
-		keywordDTO.setName(name);
-		service.insertKeywordDTO(keywordDTO);
+		KeywordDTO keywordDTO = service.selectKeywordDTOByName(name);
+		if(keywordDTO == null){
+			service.insertKeywordDTO(keywordDTO);
+		}
 		model.addAttribute("key",name);
 		return "/drawing";
 	}
@@ -193,4 +195,25 @@ public class DrathingController {
 		service.updatePrintDTO(printDTO);
 		return "redirect:/bulletin?number="+number;
 	}
+
+	//댓글
+
+	@PostMapping("/comment")
+	public  String comment(Model model, @RequestParam("comment") String comment,
+						   @RequestParam("number") String number, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		String user = (String) session.getAttribute("user");
+		if(user == null){
+			user="guest";
+		}
+		CommentDTO commentDTO = new CommentDTO();
+		commentDTO.setComment_id(user);
+		commentDTO.setContent(comment);
+		commentDTO.setNumber(number);
+
+		service.insertCommentDTO(commentDTO);
+		return "redirect:/bulletin?number="+number;
+	}
+
+
 }

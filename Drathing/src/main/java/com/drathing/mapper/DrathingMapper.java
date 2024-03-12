@@ -21,6 +21,7 @@ public interface DrathingMapper {
 	public KeywordDTO selectKeywordDTO ();
 	//public List<CommentDTO> selectKeywordDTOs ();
 	public void insertKeywordDTO(KeywordDTO keywordDTO);
+	public KeywordDTO selectKeywordDTOByName(String name);
 	//public void updateKeywordDTO(KeywordDTO keywordDTO);
 	//public void deleteKeywordDTO(String seq);
 	

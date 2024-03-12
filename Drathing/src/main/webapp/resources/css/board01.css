@@ -25,7 +25,7 @@
         margin-top:10px;
         margin-bottom:10px;
         display: flex;
-	  justify-content: flex-end; 
+	  justify-content: flex-end;
         align-items: center;
     }
     #context{
@@ -37,7 +37,7 @@
     }
          .image-container {
             display: inline-block;
-            margin: 15px; /* 이미지 사이의 간격 조절 */
+            margin: 15px;
              width: 21%;
             height: 20%;
             text-align: center;
@@ -47,12 +47,12 @@
            .image-container img {
             width: 90%;
             height: 90%;
-            object-fit: cover; /* 이미지 비율 유지 및 크기 조절 */
+            object-fit: cover;
         }
         h5{
           font-family: 'Finger Paint', 바탕;
         }
-        
+
         #button1 {
     border: none; /* 테두리 제거 */
     padding: 0; /* 내부 여백 제거 */
@@ -65,15 +65,14 @@
 }
 	#button2{
     border: none;
-    padding: 0px 5px; 
+    padding: 0px 5px;
     margin-right : 25px;
-    background: pink; 
-    color: white; 
+    background: pink;
+    color: white;
     cursor: pointer;
     font-size: inherit;
-     height: 20px; 
+     height: 20px;
      box-sizing : border-box;
      flex-grow: 1;
 	}
-	
-   	
+

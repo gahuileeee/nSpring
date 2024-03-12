@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.List" %>
-<c:set var="loginOutLink" value="${sessionScope.user==null ? '/login?pg=1' : '/logout'}"/>
+<c:set var="loginOutLink" value="${sessionScope.user==null ? '/login' : '/logout'}"/>
 <c:set var="loginOut" value="${sessionScope.user==null ? 'Login' : 'Logout'}"/>
 <!DOCTYPE html>
 <html>
@@ -29,6 +29,7 @@
             </button>
         </form>
         <form action="${loginOutLink}" >
+            <input type="hidden" name="pg" value="1">
             <button type="submit" class="button" id='button2'>
                 <h3>${loginOut}</h3>
             </button>
@@ -62,10 +63,9 @@
     </div>
     
     <!-- 댓글 입력 폼 -->
-    <form id="comment-form" action ="/like" method="post">
+    <form id="comment-form" action ="/comment" method="post">
         <textarea id="comment-input" name="comment" rows="4" cols="50"></textarea>
        <input type="hidden" name="number" value="${print.number}">
-       <input type="hidden" name="number" value="${print.like}">
         <button type="submit" >Submit Comment</button>
     </form>
     <br>
@@ -75,8 +75,9 @@
         <p>${comment.comment_id}</p>
         <p>${comment.content}</p>
         </div>
-        <br>
           </c:forEach>
+           <br>
+
     </div>
 </div>
     </div>

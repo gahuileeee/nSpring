@@ -36,6 +36,10 @@
         SELECT * FROM `keywords` ORDER BY RAND() LIMIT 1;
     </select>
 
+    <select id="selectKeywordDTOByName" resultType="com.drathing.dto.KeywordDTO">
+        SELECT * FROM `keywords` WHERE `name` = #{name};
+    </select>
+
 
     <!-- Print -->
     <select id="selectPrintDTO" resultType="com.drathing.dto.PrintDTO">
